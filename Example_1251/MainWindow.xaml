@@ -1,0 +1,68 @@
+﻿<Window x:Class="Example_1251.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Example_1251"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+               
+        <ListView x:Name="lvClients" Margin="10" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding PersonId}"/>
+                    <GridViewColumn Header="DepMoney" DisplayMemberBinding="{Binding DepVallet}"/>
+                    <GridViewColumn Header="UnDepMoney" DisplayMemberBinding="{Binding UnDepVallet}"/>
+                    <GridViewColumn Header="DepartamentId" DisplayMemberBinding="{Binding DepartamentId}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel>
+            <ComboBox x:Name="cbDepartment" Margin="5" SelectionChanged="CbDepartment_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DepartmentName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+         
+            <TextBox  Margin="5" 
+                      Name="SelectedName"
+                      Text="{Binding ElementName=lvClients, Path=SelectedItem.Name}"/>
+            <TextBox  Margin="5" 
+                      Name="SelectedId"
+                      Text="{Binding ElementName=lvClients, Path=SelectedItem.PersonId}"/>
+            <TextBox  Margin="5" 
+                      Name="MoneyToAdd"/>
+            <Button Content="Пополнить депозитный счет" Margin="5" Click="btnAddDepMoney"/>
+            <Button Content="Пополнить недепозитный счет" Margin="5" Click="btnAddUnDepMoney"/>
+            <Button Content="Закрыть депозитный счет" Margin="5" Click="btnCloseDepVallet"/>
+            <Button Content="Закрыть недепозитный счет" Margin="5" Click="btnCloseUnDepVallet"/>
+            <Button Content="Новый счет" Margin="5" Click="btnNewVallet"/>
+
+            <TextBox Margin="5"
+                     Name="text_AddNewClient"/>
+            <Button Content="Создать новый клиентский счет" Margin="5" Click="btnAddNewClient"/>
+            <TextBox  Margin="5" 
+                      Name="id1"/>
+            <TextBox  Margin="5" 
+                      Name="id2"/>
+            <TextBox  Margin="5" 
+                      Name="moneytochange"/>
+            <Button Content="Перевести между депозитными счетами" Margin="5" Click="UnDepMoneyChange"/>
+            <Button Content="Перевести между недепозитными счетами" Margin="5" Click="btnRef"/>
+
+
+        </StackPanel>
+
+
+
+    </Grid>
+</Window>
